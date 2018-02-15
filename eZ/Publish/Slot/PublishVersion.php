@@ -22,7 +22,8 @@ class PublishVersion extends PersistenceAwareBase
             ->contentHandler()
             ->loadReverseRelations($signal->contentId);
 
-        $this->client->updateContent($signal->contentId);
+        $this->client->updateContent($signal->contentId, $signal->versionNo);
+
         foreach ($relations as $relation) {
             $this->client->updateContent($relation->destinationContentId);
         }
